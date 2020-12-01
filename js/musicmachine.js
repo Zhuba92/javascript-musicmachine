@@ -9,6 +9,7 @@ $(document).ready(function () {
     // Makes keys for these octaves
     const MIN_OCTAVE = 3, MAX_OCTAVE = 5;
 
+
     // Create the grid of keyboard keys
     for (var octave = MIN_OCTAVE; octave <= MAX_OCTAVE; octave++) {
         // Create a new row with a Bootstrap class
@@ -58,6 +59,17 @@ $(document).ready(function () {
     $("#playButton").click(function () {
         playRecording(recordedNotes);
     });
+
+    $("#songOneButton").click(function () {
+        playRecording(songOne);
+    });
+
+    $("#songTwoButton").click(function () {
+        playRecording(songTwo);
+    });
+
+    var songOne = ["C,4", "D,3", "A,5", "B,4", "B,3"];
+    var songTwo = ["B,5", "A,5", "C,3", "E,4", "B,4"];
 
     // Assign functions to the other buttons
     $("#recordButton").click(toggleRecording);
@@ -113,13 +125,13 @@ $(document).ready(function () {
     function playRecording(arrayOfNotes) {
         // Loop over recorded notes, calling the anonymous
         // function for each element
-        arrayOfNotes.forEach(function (entry, index) {
+        arrayOfNotes.forEach(function (note, index) {
             // Cause another anonymous function to run
             // with a set delay (in milliseconds)
             setTimeout(function () {
                 // The entry will be a string from the array,
                 // like "C,3"
-                playRecordedNote(entry);
+                playRecordedNote(note);
             }, index * 500); // additional 500 MS delay for each note
         });
 
